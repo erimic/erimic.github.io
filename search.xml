@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Debian下Shadowsocks安装及优化]]></title>
-      <url>http://erimic.github.io/2017/03/15/shadownsocks/</url>
+      <url>http://www.erimic.com/2017/03/15/shadownsocks/</url>
       <content type="html"><![CDATA[<h1 id="Debian下Shadowsocks安装及优化"><a href="#Debian下Shadowsocks安装及优化" class="headerlink" title="Debian下Shadowsocks安装及优化"></a>Debian下Shadowsocks安装及优化</h1><p>本文主要针对Xen架构vps环境搭建Shadowsockes服务器。并启用Google BBR优化内核中的拥塞算法，优化TCP。</p>
 <blockquote>
 <p>一键安装脚本参照的是<a href="https://teddysun.com/358.html" target="_blank" rel="external">秋水逸冰</a> 的博文，出于低内存低CPU考虑，使用shadowsocks-libev</p>
