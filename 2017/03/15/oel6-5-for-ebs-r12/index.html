@@ -1,0 +1,1220 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,EBS,Oracle ERP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考Metalink文档Note Id 761566.1
+
+准备假设
+数据库APPS用户
+目标DB 版本是Oracle Database Enterprise 11.2.0.4
+数据库APPS用户
+
+术语
+
+
+术语
+说明
+
+
+
+
+APPSPWD
+数据库APPS用户口令
+
+
+APPSUSER
+数据库APPS用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EBS R12 Linux服务器准备">
+<meta property="og:url" content="http://www.erimic.com/2017/03/15/oel6-5-for-ebs-r12/index.html">
+<meta property="og:site_name" content="Erimic">
+<meta property="og:description" content="参考Metalink文档Note Id 761566.1
+
+准备假设
+数据库APPS用户
+目标DB 版本是Oracle Database Enterprise 11.2.0.4
+数据库APPS用户
+
+术语
+
+
+术语
+说明
+
+
+
+
+APPSPWD
+数据库APPS用户口令
+
+
+APPSUSER
+数据库APPS用户">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585290779.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585329152.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585407140.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585414632.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585421336.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585427468.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585434765.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585440843.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585446260.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585450776.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585456208.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585462299.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585470079.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585475856.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585482208.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585487827.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585493718.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585499724.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585504698.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585510105.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585515353.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585519750.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585524505.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585529020.png">
+<meta property="og:image" content="http://www.erimic.com/images/blog/1489585535177.png">
+<meta property="og:updated_time" content="2017-03-15T14:06:39.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EBS R12 Linux服务器准备">
+<meta name="twitter:description" content="参考Metalink文档Note Id 761566.1
+
+准备假设
+数据库APPS用户
+目标DB 版本是Oracle Database Enterprise 11.2.0.4
+数据库APPS用户
+
+术语
+
+
+术语
+说明
+
+
+
+
+APPSPWD
+数据库APPS用户口令
+
+
+APPSUSER
+数据库APPS用户">
+<meta name="twitter:image" content="http://www.erimic.com/images/blog/1489585290779.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PBE6TB3JS6',
+      apiKey: '3e4b2101c22fe34d5b0e7d46b908cc2a',
+      indexName: 'erimic_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索","hits_empty":"未发现与[${query}]相关的内容","hits_stats":"${hits}条相关条目，使用了${time}毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.erimic.com/2017/03/15/oel6-5-for-ebs-r12/"/>
+
+
+
+
+
+  <title> EBS R12 Linux服务器准备 | Erimic </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?eb50e0a63b13143cad589ecf2ee40282";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Erimic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.erimic.com/2017/03/15/oel6-5-for-ebs-r12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Erimic">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Erimic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                EBS R12 Linux服务器准备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T21:35:05+08:00">
+                2017-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/15/oel6-5-for-ebs-r12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/15/oel6-5-for-ebs-r12/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/15/oel6-5-for-ebs-r12/" class="leancloud_visitors" data-flag-title="EBS R12 Linux服务器准备">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考<a href="https://support.oracle.com/" target="_blank" rel="external">Metalink</a>文档<a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=367547959501063&amp;id=761566.1&amp;_adf.ctrl-state=olhiprytu_57" target="_blank" rel="external">Note Id 761566.1</a></p>
+</blockquote>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h3><ul>
+<li>数据库APPS用户</li>
+<li>目标DB 版本是Oracle Database Enterprise 11.2.0.4</li>
+<li>数据库APPS用户</li>
+</ul>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APPSPWD</td>
+<td>数据库APPS用户口令</td>
+</tr>
+<tr>
+<td>APPSUSER</td>
+<td>数据库APPS用户</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="EBS-12-1-3-CERTIFIED-OS"><a href="#EBS-12-1-3-CERTIFIED-OS" class="headerlink" title="EBS 12.1.3 CERTIFIED OS"></a>EBS 12.1.3 CERTIFIED OS</h3><p><img src="/images/blog/1489585290779.png" alt="1489585290779"></p>
+<h3 id="OEL6-5安装介质下载"><a href="#OEL6-5安装介质下载" class="headerlink" title="OEL6.5安装介质下载"></a>OEL6.5安装介质下载</h3><p><img src="/images/blog/1489585329152.png" alt="1489585329152"></p>
+<h2 id="OEL6-5安装及配置"><a href="#OEL6-5安装及配置" class="headerlink" title="OEL6.5安装及配置"></a>OEL6.5安装及配置</h2><h3 id="OEL6-5安装"><a href="#OEL6-5安装" class="headerlink" title="OEL6.5安装"></a>OEL6.5安装</h3><p><img src="/images/blog/1489585407140.png" alt="1489585407140"></p>
+<p><img src="/images/blog/1489585414632.png" alt="1489585414632"></p>
+<p><img src="/images/blog/1489585421336.png" alt="1489585421336"></p>
+<p><img src="/images/blog/1489585427468.png" alt="1489585427468"></p>
+<p><img src="/images/blog/1489585434765.png" alt="1489585434765"></p>
+<p><img src="/images/blog/1489585440843.png" alt="1489585440843"></p>
+<p><img src="/images/blog/1489585446260.png" alt="1489585446260"></p>
+<p><img src="/images/blog/1489585450776.png" alt="1489585450776"></p>
+<p><img src="/images/blog/1489585456208.png" alt="1489585456208"></p>
+<p><img src="/images/blog/1489585462299.png" alt="1489585462299"></p>
+<p><img src="/images/blog/1489585470079.png" alt="1489585470079"></p>
+<p><img src="/images/blog/1489585475856.png" alt="1489585475856"></p>
+<p><img src="/images/blog/1489585482208.png" alt="1489585482208"></p>
+<p><img src="/images/blog/1489585487827.png" alt="1489585487827"></p>
+<p><img src="/images/blog/1489585493718.png" alt="1489585493718"></p>
+<p><img src="/images/blog/1489585499724.png" alt="1489585499724"></p>
+<p><img src="/images/blog/1489585504698.png" alt="1489585504698"></p>
+<p><img src="/images/blog/1489585510105.png" alt="1489585510105"></p>
+<p><img src="/images/blog/1489585515353.png" alt="1489585515353"></p>
+<p><img src="/images/blog/1489585519750.png" alt="1489585519750"></p>
+<p><img src="/images/blog/1489585524505.png" alt="1489585524505"></p>
+<p><img src="/images/blog/1489585529020.png" alt="1489585529020"></p>
+<p><img src="/images/blog/1489585535177.png" alt="1489585535177"></p>
+<h3 id="安装VMTool"><a href="#安装VMTool" class="headerlink" title="安装VMTool"></a>安装VMTool</h3><pre><code class="shell">mkdir /cdrom
+mount /dev/cdrom /cdrom
+cd /cdrom/
+mkdir /ISO
+cp -r * /ISO
+cd /ISO
+tar -xf VMwareTools-9.6.1-1378637.tar.gz
+cd vmware-tools-distrib/
+perl vmware-install.pl
+</code></pre>
+<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><h4 id="配置-ETC-SYSCONFIG-NETWORK"><a href="#配置-ETC-SYSCONFIG-NETWORK" class="headerlink" title="配置/ETC/SYSCONFIG/NETWORK"></a>配置/ETC/SYSCONFIG/NETWORK</h4><p>vi /etc/sysconfig/network</p>
+<pre><code class="shell">HOSTNAME=app01
+</code></pre>
+<h4 id="配置-ETC-HOSTS"><a href="#配置-ETC-HOSTS" class="headerlink" title="配置/ETC/HOSTS"></a>配置/ETC/HOSTS</h4><p>vi /etc/hosts</p>
+<pre><code class="shell">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.228.130 app01.test.com app01
+</code></pre>
+<h4 id="移除-ETC-SYSCONFIG-NETWORKING-PROFILES-DEFAULT-NETWORK"><a href="#移除-ETC-SYSCONFIG-NETWORKING-PROFILES-DEFAULT-NETWORK" class="headerlink" title="移除/ETC/SYSCONFIG/NETWORKING/PROFILES/DEFAULT/NETWORK"></a>移除/ETC/SYSCONFIG/NETWORKING/PROFILES/DEFAULT/NETWORK</h4><pre><code class="shell">mv /etc/sysconfig/networking/profiles/default/network /etc/sysconfig/networking/profiles/default/network.old
+</code></pre>
+<h4 id="操作系统需要的补丁"><a href="#操作系统需要的补丁" class="headerlink" title="操作系统需要的补丁"></a>操作系统需要的补丁</h4><pre><code class="shell">cd /etc/yum.repos.d
+mv public-yum-ol6.repo public-yum-ol6.repo.bck
+wget http://public-yum.oracle.com/public-yum-ol6.repo
+vi public-yum-ol6.repo
+</code></pre>
+<pre><code class="shell">[ol6_latest]
+name=Oracle Linux $releasever Latest ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/latest/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1
+
+[ol6_addons]
+name=Oracle Linux $releasever Add ons ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/addons/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1
+
+[ol6_ga_base]
+name=Oracle Linux $releasever GA installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/0/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u1_base]
+name=Oracle Linux $releasever Update 1 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/1/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u2_base]
+name=Oracle Linux $releasever Update 2 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/2/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u3_base]
+name=Oracle Linux $releasever Update 3 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/3/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u4_base]
+name=Oracle Linux $releasever Update 4 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/4/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u5_base]
+name=Oracle Linux $releasever Update 5 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/5/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_u6_base]
+name=Oracle Linux $releasever Update 6 installation media copy ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/6/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_UEKR3_latest]
+name=Latest Unbreakable Enterprise Kernel for Oracle Linux $releasever ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/UEKR3/latest/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_UEK_latest]
+name=Latest Unbreakable Enterprise Kernel for Oracle Linux $releasever ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/UEK/latest/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1
+
+[ol6_UEK_base]
+name=Unbreakable Enterprise Kernel for Oracle Linux $releasever ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/UEK/base/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_MySQL]
+name=MySQL 5.5 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/MySQL/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_gdm_multiseat]
+name=Oracle Linux 6 GDM Multiseat ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/gdm_multiseat/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_MySQL56]
+name=MySQL 5.6 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/MySQL56/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_spacewalk20_server]
+name=Spacewalk Server 2.0 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/spacewalk20/server/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_spacewalk20_client]
+name=Spacewalk Client 2.0 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/spacewalk20/client/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+# the following repositories are only available for x86_64 architecture systems
+[ol6_ofed_UEK]
+name=OFED supporting tool packages for Unbreakable Enterprise Kernel on Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/ofed_UEK/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+priority=20
+
+[ol6_playground_latest]
+name=Latest mainline stable kernel for Oracle Linux 6 ($basearch) - Unsupported 
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/playground/latest/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_spacewalk22_server]
+name=Spacewalk Server 2.2 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/spacewalk22/server/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+
+[ol6_spacewalk22_client]
+name=Spacewalk Client 2.2 for Oracle Linux 6 ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/spacewalk22/client/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=0
+</code></pre>
+<pre><code class="shell">yum install oracle-ebs-server-R12-preinstall
+</code></pre>
+<h4 id="OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY"><a href="#OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY" class="headerlink" title="OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)"></a>OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)</h4><pre><code class="shell">cd 6078836
+mv /usr/lib/libdb.so.2 /usr/lib/libdb.so.2.6078836
+cp libdb.so.2 /usr/lib
+</code></pre>
+<h4 id="LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY"><a href="#LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY" class="headerlink" title="LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)"></a>LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)</h4><pre><code class="shell">unlink /usr/lib/libXtst.so.6
+ln -s /usr/X11R6/lib/libXtst.so.6.1 /usr/lib/libXtst.so.6
+</code></pre>
+<h4 id="创建用户及组"><a href="#创建用户及组" class="headerlink" title="创建用户及组"></a>创建用户及组</h4><pre><code class="shell">#建立组
+/usr/sbin/groupadd -g 600 oinstall 
+/usr/sbin/groupadd -g 602 dba
+/usr/sbin/groupadd -g 603 applgrp
+#检查组
+cat /etc/group
+</code></pre>
+<pre><code class="shell">#建立用户
+/usr/sbin/useradd -u 601 -g oinstall -G dba oraprod
+/usr/sbin/useradd -u 602 -g applgrp applprod
+/usr/sbin/useradd -u 701 -g oinstall -G dba oradev
+/usr/sbin/useradd -u 702 -g applgrp appldev
+/usr/sbin/useradd -u 801 -g oinstall -G dba oratrn
+/usr/sbin/useradd -u 802 -g applgrp appltrn
+/usr/sbin/useradd -u 901 -g oinstall -G dba orasit
+/usr/sbin/useradd -u 902 -g applgrp applsit
+/usr/sbin/useradd -u 911 -g oinstall -G dba orademo
+/usr/sbin/useradd -u 912 -g applgrp appldemo
+/usr/sbin/useradd -u 921 -g oinstall -G dba orauat
+/usr/sbin/useradd -u 922 -g applgrp appluat
+#如果用户存在
+/usr/sbin/usermod -g oinstall -G dba oracle
+#如果nobody用户不存在
+/usr/sbin/useradd nobody
+cat /etc/passwd
+</code></pre>
+<h4 id="OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-AND-RHEL-5-ONLY"><a href="#OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-AND-RHEL-5-ONLY" class="headerlink" title="OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5 AND RHEL 5 ONLY)"></a>OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5 AND RHEL 5 ONLY)</h4><pre><code class="shell">cd /ins/6078836
+mv /usr/lib/libdb.so.2 /usr/lib/libdb.so.2.6078836
+cp libdb.so.2 /usr/lib
+cd /usr/lib 
+ln -fs libdb.so.2 lindb.so.3
+</code></pre>
+<h4 id="LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-AND-6-ONLY"><a href="#LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-AND-6-ONLY" class="headerlink" title="LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5 AND 6 ONLY)"></a>LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5 AND 6 ONLY)</h4><pre><code class="shell">unlink /usr/lib/libXtst.so.6
+ln -s /usr/X11R6/lib/libXtst.so.6.1 /usr/lib/libXtst.so.6
+</code></pre>
+<h4 id="操作系统链接设置"><a href="#操作系统链接设置" class="headerlink" title="操作系统链接设置"></a>操作系统链接设置</h4><pre><code class="shell">mv /usr/bin/gcc /usr/bin/gcc.orig
+mv /usr/bin/g++ /usr/bin/g++.orig
+ln -s /usr/bin/x86_64-redhat-linux-gcc34 /usr/bin/gcc
+ln -s /usr/bin/x86_64-redhat-linux-g++34 /usr/bin/g++
+</code></pre>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/EBS/" rel="tag"># EBS</a>
+          
+            <a href="/tags/Oracle-ERP/" rel="tag"># Oracle ERP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/15/next-more/" rel="next" title="NexT如何在主页中使用显示更多按钮">
+                <i class="fa fa-chevron-left"></i> NexT如何在主页中使用显示更多按钮
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/15/oel6-5-for-ebs-r12/"
+           data-title="EBS R12 Linux服务器准备" data-url="http://www.erimic.com/2017/03/15/oel6-5-for-ebs-r12/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Erimic" />
+          <p class="site-author-name" itemprop="name">Erimic</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#假设"><span class="nav-number">1.1.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">1.2.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EBS-12-1-3-CERTIFIED-OS"><span class="nav-number">1.3.</span> <span class="nav-text">EBS 12.1.3 CERTIFIED OS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OEL6-5安装介质下载"><span class="nav-number">1.4.</span> <span class="nav-text">OEL6.5安装介质下载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OEL6-5安装及配置"><span class="nav-number">2.</span> <span class="nav-text">OEL6.5安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OEL6-5安装"><span class="nav-number">2.1.</span> <span class="nav-text">OEL6.5安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装VMTool"><span class="nav-number">2.2.</span> <span class="nav-text">安装VMTool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数配置"><span class="nav-number">2.3.</span> <span class="nav-text">参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-ETC-SYSCONFIG-NETWORK"><span class="nav-number">2.3.1.</span> <span class="nav-text">配置/ETC/SYSCONFIG/NETWORK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-ETC-HOSTS"><span class="nav-number">2.3.2.</span> <span class="nav-text">配置/ETC/HOSTS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除-ETC-SYSCONFIG-NETWORKING-PROFILES-DEFAULT-NETWORK"><span class="nav-number">2.3.3.</span> <span class="nav-text">移除/ETC/SYSCONFIG/NETWORKING/PROFILES/DEFAULT/NETWORK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统需要的补丁"><span class="nav-number">2.3.4.</span> <span class="nav-text">操作系统需要的补丁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY"><span class="nav-number">2.3.5.</span> <span class="nav-text">OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-RHEL-5-ORACLE-LINUX-6-AND-RHEL-6-ONLY"><span class="nav-number">2.3.6.</span> <span class="nav-text">LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5, RHEL 5, ORACLE LINUX 6 AND RHEL 6 ONLY)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建用户及组"><span class="nav-number">2.3.7.</span> <span class="nav-text">创建用户及组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OS-LIBRARY-PATCH-FOR-ORACLE-HTTP-SERVER-ON-ORACLE-LINUX-5-AND-RHEL-5-ONLY"><span class="nav-number">2.3.8.</span> <span class="nav-text">OS LIBRARY PATCH FOR ORACLE HTTP SERVER (ON ORACLE LINUX 5 AND RHEL 5 ONLY)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LINK-TO-MOTIF-LIBRARY-IN-ORACLE-APPLICATION-SERVER-10-1-2-ON-ORACLE-LINUX-5-AND-6-ONLY"><span class="nav-number">2.3.9.</span> <span class="nav-text">LINK TO MOTIF LIBRARY IN ORACLE APPLICATION SERVER 10.1.2 (ON ORACLE LINUX 5 AND 6 ONLY)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统链接设置"><span class="nav-number">2.3.10.</span> <span class="nav-text">操作系统链接设置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Erimic</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"erimic"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EMrjmmtbBQpdA4yx0f4bl0nh-gzGzoHsz", "t0L7FDuK6zJdULJpLrNf83QR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
