@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://www.erimic.com/11gr2-standalone-server-installation/</loc>
+    <lastmod>2017-03-16T02:43:48.522Z</lastmod>
+    <data>
+        <display>
+        <title>11gR2 for Standalone Server Installation</title>
+        <pubTime>2017-03-16T01:20:29.000Z</pubTime>
+        
+        <tag>Oracle</tag>
+         
+        <tag>DB</tag>
+         
+        <tag>11gR2</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/next-more/</loc>
+    <lastmod>2017-03-15T14:07:39.605Z</lastmod>
+    <data>
+        <display>
+        <title>NexT如何在主页中使用显示更多按钮</title>
+        <pubTime>2017-03-15T13:17:53.000Z</pubTime>
+        
+        <tag>Next</tag>
+         
+        <tag>Hexo</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/oel6-5-for-ebs-r12/</loc>
+    <lastmod>2017-03-15T14:06:39.126Z</lastmod>
+    <data>
+        <display>
+        <title>EBS R12 Linux服务器准备</title>
+        <pubTime>2017-03-15T13:35:05.000Z</pubTime>
+        
+        <tag>EBS</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Oracle ERP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/shadownsocks/</loc>
+    <lastmod>2017-03-15T13:12:39.976Z</lastmod>
+    <data>
+        <display>
+        <title>Debian下Shadowsocks安装及优化</title>
+        <pubTime>2017-03-15T01:57:46.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>VPN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+    
+    
+</urlset>
