@@ -4,11 +4,28 @@
 
     
   <url>
-    <loc>http://www.erimic.com/article/hexo-command/</loc>
-    <lastmod>2017-03-29T05:22:05.558Z</lastmod>
+    <loc>http://www.erimic.com/article/redmine-plugin-install/</loc>
+    <lastmod>2017-03-29T05:28:02.757Z</lastmod>
     <data>
         <display>
-        <title>hexo-command</title>
+        <title>Redmine安装插件</title>
+        <pubTime>2017-03-29T05:17:02.000Z</pubTime>
+        
+        <tag>Redmine</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/hexo-command/</loc>
+    <lastmod>2017-03-29T05:27:41.725Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo常用命令</title>
         <pubTime>2017-03-29T05:18:55.000Z</pubTime>
         
         <tag>hexo</tag>
@@ -68,9 +85,9 @@
         <title>EBS R12 Linux服务器准备</title>
         <pubTime>2017-03-15T13:35:05.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>EBS</tag>
+         
+        <tag>Linux</tag>
          
         <tag>Oracle ERP</tag>
          
