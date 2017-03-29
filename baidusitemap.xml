@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://www.erimic.com/article/hexo-command/</loc>
+    <lastmod>2017-03-29T05:22:05.558Z</lastmod>
+    <data>
+        <display>
+        <title>hexo-command</title>
+        <pubTime>2017-03-29T05:18:55.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.erimic.com/article/11gr2-standalone-server-installation/</loc>
     <lastmod>2017-03-16T02:43:48.522Z</lastmod>
     <data>
@@ -51,9 +68,9 @@
         <title>EBS R12 Linux服务器准备</title>
         <pubTime>2017-03-15T13:35:05.000Z</pubTime>
         
-        <tag>EBS</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>EBS</tag>
          
         <tag>Oracle ERP</tag>
          

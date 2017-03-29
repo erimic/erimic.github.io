@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.erimic.com/article/hexo-command/</loc>
+    
+    <lastmod>2017-03-29T05:22:05.558Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.erimic.com/article/11gr2-standalone-server-installation/</loc>
     
     <lastmod>2017-03-16T02:43:48.522Z</lastmod>
