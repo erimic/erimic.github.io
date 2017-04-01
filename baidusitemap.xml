@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/machine-deep-learning2/</loc>
-    <lastmod>2017-04-01T03:43:31.405Z</lastmod>
+    <lastmod>2017-04-01T03:47:09.043Z</lastmod>
     <data>
         <display>
         <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 2</title>
@@ -22,7 +22,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/machine-deep-learning1/</loc>
-    <lastmod>2017-04-01T03:43:06.436Z</lastmod>
+    <lastmod>2017-04-01T03:46:54.809Z</lastmod>
     <data>
         <display>
         <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 1</title>
@@ -119,9 +119,9 @@
         <title>EBS R12 Linux服务器准备</title>
         <pubTime>2017-03-15T13:35:05.000Z</pubTime>
         
-        <tag>EBS</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>EBS</tag>
          
         <tag>Oracle ERP</tag>
          
