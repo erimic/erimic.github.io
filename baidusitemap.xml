@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://www.erimic.com/article/OAF-JDEVELOPER-ERROR/</loc>
+    <lastmod>2017-04-20T02:32:27.927Z</lastmod>
+    <data>
+        <display>
+        <title>OAF 12.2调试页面报错Cannot create an instance of the Virtual Machine Java</title>
+        <pubTime>2017-04-20T02:15:42.000Z</pubTime>
+        
+        <tag>OAF</tag>
+         
+        <tag>JDEVELOPER</tag>
+         
+        <tag>EBS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.erimic.com/article/machine-deep-learning2/</loc>
     <lastmod>2017-04-01T03:47:09.043Z</lastmod>
     <data>
@@ -119,9 +140,9 @@
         <title>EBS R12 Linux服务器准备</title>
         <pubTime>2017-03-15T13:35:05.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>EBS</tag>
+         
+        <tag>Linux</tag>
          
         <tag>Oracle ERP</tag>
          
