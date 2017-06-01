@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://www.erimic.com/article/ebs-dowload-ak-region/</loc>
+    <lastmod>2017-06-01T04:01:51.561Z</lastmod>
+    <data>
+        <display>
+        <title>EBS AK REGION 导入导出</title>
+        <pubTime>2017-06-01T03:39:51.000Z</pubTime>
+        
+        <tag>EBS</tag>
+         
+        <tag>AK HTML</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.erimic.com/article/oaf-jquery-autocompleted/</loc>
     <lastmod>2017-04-26T14:41:13.630Z</lastmod>
     <data>
@@ -11,9 +30,9 @@
         <title>OAF使用Jquery实现文本框autocompleted</title>
         <pubTime>2017-04-26T13:54:16.000Z</pubTime>
         
-        <tag>OAF</tag>
-         
         <tag>EBS</tag>
+         
+        <tag>OAF</tag>
          
         <tag>Jquery</tag>
          
@@ -34,11 +53,11 @@
         <title>OAF 12.2调试页面报错Cannot create an instance of the Virtual Machine Java</title>
         <pubTime>2017-04-20T02:15:42.000Z</pubTime>
         
+        <tag>EBS</tag>
+         
         <tag>OAF</tag>
          
         <tag>JDEVELOPER</tag>
-         
-        <tag>EBS</tag>
          
          
            
