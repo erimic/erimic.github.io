@@ -356,165 +356,24 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>参考</p>
-<p><a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=434319429545842&amp;id=1077728.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=s0sjb200n_214" target="_blank" rel="external">Microsoft Office Integration with Oracle E-Business Suite 11i and R12 NoteId:1077728.1</a></p>
+<p><a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=434319429545842&amp;id=1077728.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=s0sjb200n_214">Microsoft Office Integration with Oracle E-Business Suite 11i and R12 NoteId:1077728.1</a></p>
 </blockquote>
-<h3 id="OFFFICE-2016设置"><a href="#OFFFICE-2016设置" class="headerlink" title="OFFFICE  2016设置"></a>OFFFICE  2016设置</h3><ol>
+<h3 id="OFFICE-2016设置"><a href="#OFFICE-2016设置" class="headerlink" title="OFFICE  2016设置"></a>OFFICE  2016设置</h3><ol>
 <li>点击 文件&gt;选项</li>
 <li>点击 信任中心&gt;信用中心设置</li>
 <li>在宏设置中，选择“禁用所有宏，并发出通知”</li>
 <li>在宏设置中，选择“信任对VBA工程对象模型的访问”</li>
 <li>点击 确定</li>
 </ol>
-<h3 id="添加桌面集成管理器职责"><a href="#添加桌面集成管理器职责" class="headerlink" title="添加桌面集成管理器职责"></a>添加桌面集成管理器职责</h3><p><img src="/images/blog/1499332874944.png" alt="1499332874944"></p>
-<h3 id="配置集成器"><a href="#配置集成器" class="headerlink" title="配置集成器"></a>配置集成器</h3><ul>
-<li><p>[ ] 桌面集成管理器 &gt; 管理集成器</p>
-<pre><code>###### ![1499333224603](/images/blog/1499333224603.png)
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 创建集成器</p>
-<pre><code>| 属性    | 值              |
-| ----- | -------------- |
-| 集成器名称 | 管理人才库数据导入      |
-| 内部名称  | CUX_PA_HS_M    |
-| 应用    | cux custom app |
-
-&gt; 在“创建文档”页中显示（是否在“桌面集成”职责“创建文档”功能中供选择）
-&gt;
-&gt; 不选安全性规则（用于选择该集成器对应的功能，可先空着，后面再补）
-
-![1499333756272](/images/blog/1499333756272.png)
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 创建接口</p>
-<pre><code>| 属性      | 值                     |
-| ------- | --------------------- |
-| 接口名称    | Upload Manager Source |
-| 接口类型    | API-过程                |
-| 程序包名称   | cux_pa_hrsource_pkg   |
-| 过程/函数名称 | import_manager_source |
-| API 返回  | FND 消息代码              |
-
-![1499333892723](/images/blog/1499333892723.png)
-
-&gt; 选择“FND消息代码”接口程序中通过以下代码返回错误
-&gt;
-&gt; ```
-&gt; fnd_message.set_name(&#39;PER&#39;,&#39;AC_WEBADI_MESSAGE&#39;); 
-&gt; fnd_message.set_token(&#39;MESSAGESTR&#39;,&#39;生效日期不能为空&#39;); --改成要提示的具体消息       
-&gt; fnd_message.raise_error; 
-&gt; ```
-&gt;
-&gt; 其中&#39;AC_WEBADI_MESSAGE&#39;是自行定义的一个消息，为了显示需要提示的具体消息。
-
-​
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 创建内容</p>
-<pre><code>| 属性   | 值                                 |
-| ---- | --------------------------------- |
-| 内容名称 | Project Manager Source            |
-| 内容类型 | SQL 查询                            |
-| 查询   | select * from cux_pa_hrsource_m_v |
-
-![1499338503952](/images/blog/1499338503952.png)
-
-点击“应用”
-
-![1499338622372](/images/blog/1499338622372.png)
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 创建加载程序列表</p>
-<pre><code>| 属性   | 值    |
-| ---- | ---- |
-| 加载程序 | 自模板  |
-
-![1499338778555](/images/blog/1499338778555.png)
-
-点击“创建”
-
-![1499346503968](/images/blog/1499346503968.png)
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 定义导入程序</p>
-<pre><code>暂不定义
-</code></pre></li>
-</ul>
-<h3 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h3><ul>
-<li><p>[ ] 桌面集成管理器 &gt; 管理组件</p>
-<pre><code>| 属性   | 值                  |
-| ---- | ------------------ |
-| 显示名  | 项目管理人才库组件          |
-| 内部名称 | PROJ_MANAGE_SOURCE |
-| 应用   | cux custom app     |
-| 组件类型 | 表值列表               |
-| 组件实体 | BneOAValueSet      |
-
-![1499347998488](/images/blog/1499347998488.png)
-
-​
-
-&gt; 内部名称需小于20个字符
-</code></pre></li>
-</ul>
-<ul>
-<li><p>[ ] 设置组件参数列表</p>
-<pre><code>| 参数                  | 参数值                  | 参数说明                       |
-| ------------------- | -------------------- | -------------------------- |
-| table-column-alias  | emp_num              |                            |
-| table-column-sort   | ASCENDING            | 排序，使用默认值                   |
-| table-columns       | emp_number,last_name | 按次序列出需要显示的字段名，以西文逗号隔开      |
-| table-headers       | 员工编号,姓名              | 按次序列出需要显示的字段名对应的名称，以西文逗号隔开 |
-| table-select-column | p_segment1           | 返回到的接口字段名                  |
-| window-caption      | 选择人员                 | 弹出窗口的标题                    |
-| window-height       | 500                  | 调整弹出窗口的高度                  |
-| window-width        | 400                  | 调整弹出窗口的宽度                  |
-
-![1499349092499](/images/blog/1499349092499.png)
-</code></pre></li>
-</ul>
-<h3 id="定义功能项"><a href="#定义功能项" class="headerlink" title="定义功能项"></a>定义功能项</h3><p>系统管理员&gt;应用产品&gt;功能</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>功能</td>
-<td>CUX_PA_HS_M</td>
-</tr>
-<tr>
-<td>用户功能名</td>
-<td>项目管理人才库数据导入</td>
-</tr>
-<tr>
-<td>类型</td>
-<td>SSWA servlet函数</td>
-</tr>
-<tr>
-<td>参数</td>
-<td>bne:page=BneCreateDoc&amp;bne:viewer=BNE:EXCEL%25&amp;bne:reporting=N&amp;bne:integrator=CUX:CUX_PA_HS_M_XINTG</td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>需要找出Integrator Code:CUX:CUX_PA_HS_M_XINTG</p>
-</blockquote>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/EBS12-2-WEBADI/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
