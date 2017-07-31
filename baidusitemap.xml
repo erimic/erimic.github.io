@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/EBS12-2-WEBADI/</loc>
-    <lastmod>2017-07-25T01:34:59.477Z</lastmod>
+    <lastmod>2017-07-31T01:39:17.389Z</lastmod>
     <data>
         <display>
         <title>EBS12.2 WEBADI</title>
@@ -49,9 +49,9 @@
         <title>OAF使用Jquery实现文本框autocompleted</title>
         <pubTime>2017-04-26T13:54:16.000Z</pubTime>
         
-        <tag>OAF</tag>
-         
         <tag>EBS</tag>
+         
+        <tag>OAF</tag>
          
         <tag>Jquery</tag>
          
@@ -72,11 +72,11 @@
         <title>OAF 12.2调试页面报错Cannot create an instance of the Virtual Machine Java</title>
         <pubTime>2017-04-20T02:15:42.000Z</pubTime>
         
+        <tag>EBS</tag>
+         
         <tag>OAF</tag>
          
         <tag>JDEVELOPER</tag>
-         
-        <tag>EBS</tag>
          
          
            

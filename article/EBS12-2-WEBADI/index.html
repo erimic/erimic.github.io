@@ -116,7 +116,7 @@ OFFICE  2016设置
 在宏设置中，选择“信任对VBA工程对象模型的访问”
 点击 确定">
 <meta property="og:image" content="http://www.erimic.com/images/blog/1499332874944.png">
-<meta property="og:updated_time" content="2017-07-25T01:34:59.477Z">
+<meta property="og:updated_time" content="2017-07-31T01:39:17.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EBS12.2 WEBADI">
 <meta name="twitter:description" content="参考
@@ -535,6 +535,12 @@ OFFICE  2016设置
 <blockquote>
 <p>需要找出Integrator Code:CUX:CUX_PA_HS_M_XINTG</p>
 </blockquote>
+<h3 id="WEBADI-导入导出"><a href="#WEBADI-导入导出" class="headerlink" title="WEBADI 导入导出"></a>WEBADI 导入导出</h3><p>导出：</p>
+<pre><code class="FNDLOAD">FNDLOAD apps/apps 0 Y DOWNLOAD $BNE_TOP/patch/115/import/bneintegrator.lct CUX_PA_HS_D_XINTG.ldt BNE_INTEGRATORS INTEGRATOR_ASN=CUX INTEGRATOR_CODE=CUX_PA_HS_D_XINTG
+</code></pre>
+<p>导入</p>
+<pre><code class="FNDLOAD">FNDLOAD apps/apps 0 Y UPLOAD $BNE_TOP/patch/115/import/bneintegrator.lct CUX_PA_HS_D_XINTG.ldt
+</code></pre>
 
       
     </div>
@@ -714,7 +720,7 @@ OFFICE  2016设置
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OFFICE-2016设置"><span class="nav-number">1.</span> <span class="nav-text">OFFICE  2016设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加桌面集成管理器职责"><span class="nav-number">2.</span> <span class="nav-text">添加桌面集成管理器职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置集成器"><span class="nav-number">3.</span> <span class="nav-text">配置集成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建组件"><span class="nav-number">4.</span> <span class="nav-text">创建组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义功能项"><span class="nav-number">5.</span> <span class="nav-text">定义功能项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OFFICE-2016设置"><span class="nav-number">1.</span> <span class="nav-text">OFFICE  2016设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加桌面集成管理器职责"><span class="nav-number">2.</span> <span class="nav-text">添加桌面集成管理器职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置集成器"><span class="nav-number">3.</span> <span class="nav-text">配置集成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建组件"><span class="nav-number">4.</span> <span class="nav-text">创建组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义功能项"><span class="nav-number">5.</span> <span class="nav-text">定义功能项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WEBADI-导入导出"><span class="nav-number">6.</span> <span class="nav-text">WEBADI 导入导出</span></a></li></ol></div>
             
 
           </div>
