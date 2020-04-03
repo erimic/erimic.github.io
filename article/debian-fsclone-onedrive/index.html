@@ -1,0 +1,1037 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Debian,fsclone,onedrive," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="rclone mount官方说明
+rclone onedrive官方文档
+
+Debian 通过rclone挂在OneDrive本文用于记录在debian下通过rclone挂载OneDrive实现多平台文件共享，以便未来查看。
+获取windows客户端授权在windows电脑上下载rclone,解压到D盘执行
+cd /d d:\rclone
+rclone authorize &amp;quot;onedr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 通过rclone挂在OneDrive">
+<meta property="og:url" content="http://www.erimic.com/article/debian-fsclone-onedrive/index.html">
+<meta property="og:site_name" content="Erimic">
+<meta property="og:description" content="rclone mount官方说明
+rclone onedrive官方文档
+
+Debian 通过rclone挂在OneDrive本文用于记录在debian下通过rclone挂载OneDrive实现多平台文件共享，以便未来查看。
+获取windows客户端授权在windows电脑上下载rclone,解压到D盘执行
+cd /d d:\rclone
+rclone authorize &amp;quot;onedr">
+<meta property="og:updated_time" content="2020-03-28T10:16:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Debian 通过rclone挂在OneDrive">
+<meta name="twitter:description" content="rclone mount官方说明
+rclone onedrive官方文档
+
+Debian 通过rclone挂在OneDrive本文用于记录在debian下通过rclone挂载OneDrive实现多平台文件共享，以便未来查看。
+获取windows客户端授权在windows电脑上下载rclone,解压到D盘执行
+cd /d d:\rclone
+rclone authorize &amp;quot;onedr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PBE6TB3JS6',
+      apiKey: '3e4b2101c22fe34d5b0e7d46b908cc2a',
+      indexName: 'erimic_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.erimic.com/article/debian-fsclone-onedrive/"/>
+
+
+
+
+
+  <title>Debian 通过rclone挂在OneDrive | Erimic</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?eb50e0a63b13143cad589ecf2ee40282";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Erimic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.erimic.com/article/debian-fsclone-onedrive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Erimic">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Erimic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Debian 通过rclone挂在OneDrive</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T15:35:03+08:00">
+                2020-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/debian-fsclone-onedrive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="article/debian-fsclone-onedrive/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/debian-fsclone-onedrive/" class="leancloud_visitors" data-flag-title="Debian 通过rclone挂在OneDrive">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://rclone.org/commands/rclone_mount/" target="_blank" rel="external">rclone mount官方说明</a></p>
+<p><a href="https://rclone.org/onedrive/" target="_blank" rel="external">rclone onedrive官方文档</a></p>
+</blockquote>
+<h3 id="Debian-通过rclone挂在OneDrive"><a href="#Debian-通过rclone挂在OneDrive" class="headerlink" title="Debian 通过rclone挂在OneDrive"></a>Debian 通过rclone挂在OneDrive</h3><p>本文用于记录在debian下通过rclone挂载OneDrive实现多平台文件共享，以便未来查看。</p>
+<h4 id="获取windows客户端授权"><a href="#获取windows客户端授权" class="headerlink" title="获取windows客户端授权"></a>获取windows客户端授权</h4><p>在windows电脑上下载<a href="https://rclone.org/downloads/" target="_blank" rel="external">rclone</a>,解压到D盘执行</p>
+<pre><code class="cmd">cd /d d:\rclone
+rclone authorize &quot;onedrive&quot;
+</code></pre>
+<pre><code class="CMD">2020/03/28 15:58:00 NOTICE: Config file &quot;C:\\Users\\weiyi\\.config\\rclone\\rclone.conf&quot; not found - using defaults
+If your browser doesn&#39;t open automatically go to the following link: http://127.0.0.1:53682/auth?state=pxYLupe0p1KFw8_sg9R2zg
+Log in and authorize rclone for access
+Waiting for code...
+Got code
+Paste the following into your remote machine ---&gt;
+{&quot;access_token&quot;:&quot;XXXXXX&quot;,&quot;expiry&quot;:&quot;&quot;} #XXXXXX为授权码，记录下来备用
+&lt;---End paste
+</code></pre>
+<a id="more"></a>
+<h4 id="下载安装rclone"><a href="#下载安装rclone" class="headerlink" title="下载安装rclone"></a>下载安装rclone</h4><pre><code class="shell">curl https://rclone.org/install.sh | sudo bash
+</code></pre>
+<h4 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h4><pre><code class="shell">rclone config
+</code></pre>
+<pre><code class="shell">2020/03/28 08:08:35 NOTICE: Config file &quot;/root/.config/rclone/rclone.conf&quot; not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; n
+name&gt; erimic
+Type of storage to configure.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 / 1Fichier
+   \ &quot;fichier&quot;
+ 2 / Alias for an existing remote
+   \ &quot;alias&quot;
+ 3 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)
+   \ &quot;s3&quot;
+ 5 / Backblaze B2
+   \ &quot;b2&quot;
+ 6 / Box
+   \ &quot;box&quot;
+ 7 / Cache a remote
+   \ &quot;cache&quot;
+ 8 / Citrix Sharefile
+   \ &quot;sharefile&quot;
+ 9 / Dropbox
+   \ &quot;dropbox&quot;
+10 / Encrypt/Decrypt a remote
+   \ &quot;crypt&quot;
+11 / FTP Connection
+   \ &quot;ftp&quot;
+12 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+13 / Google Drive
+   \ &quot;drive&quot;
+14 / Google Photos
+   \ &quot;google photos&quot;
+15 / Hubic
+   \ &quot;hubic&quot;
+16 / In memory object storage system.
+   \ &quot;memory&quot;
+17 / JottaCloud
+   \ &quot;jottacloud&quot;
+18 / Koofr
+   \ &quot;koofr&quot;
+19 / Local Disk
+   \ &quot;local&quot;
+20 / Mail.ru Cloud
+   \ &quot;mailru&quot;
+21 / Mega
+   \ &quot;mega&quot;
+22 / Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+23 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+24 / OpenDrive
+   \ &quot;opendrive&quot;
+25 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+26 / Pcloud
+   \ &quot;pcloud&quot;
+27 / Put.io
+   \ &quot;putio&quot;
+28 / QingCloud Object Storage
+   \ &quot;qingstor&quot;
+29 / SSH/SFTP Connection
+   \ &quot;sftp&quot;
+30 / Sugarsync
+   \ &quot;sugarsync&quot;
+31 / Transparently chunk/split large files
+   \ &quot;chunker&quot;
+32 / Union merges the contents of several remotes
+   \ &quot;union&quot;
+33 / Webdav
+   \ &quot;webdav&quot;
+34 / Yandex Disk
+   \ &quot;yandex&quot;
+35 / http Connection
+   \ &quot;http&quot;
+36 / premiumize.me
+   \ &quot;premiumizeme&quot;
+Storage&gt; 23
+** See help for onedrive backend at: https://rclone.org/onedrive/ **
+
+Microsoft App Client Id
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_id&gt; 
+Microsoft App Client Secret
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_secret&gt; 
+Edit advanced config? (y/n)
+y) Yes
+n) No (default)
+y/n&gt; n
+Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+y) Yes (default)
+n) No
+y/n&gt; n
+For this to work, you will need rclone available on a machine that has a web browser available.
+Execute the following on your machine (same rclone version recommended) :
+    rclone authorize &quot;onedrive&quot;
+Then paste the result below:
+result&gt; {&quot;access_token&quot;:&quot;XXXXXX&quot;}  #之前记录的授权码
+Choose a number from below, or type in an existing value
+ 1 / OneDrive Personal or Business
+   \ &quot;onedrive&quot;
+ 2 / Root Sharepoint site
+   \ &quot;sharepoint&quot;
+ 3 / Type in driveID
+   \ &quot;driveid&quot;
+ 4 / Type in SiteID
+   \ &quot;siteid&quot;
+ 5 / Search a Sharepoint site
+   \ &quot;search&quot;
+Your choice&gt; 1
+Found 1 drives, please select the one you want to use:
+0:  (personal) id=fdbf61ea68ae21cc
+Chose drive to use:&gt; 0
+Found drive &#39;root&#39; of type &#39;personal&#39;, URL: https://onedrive.live.com/?cid=fdbf61ea68ae21cc
+Is that okay?
+y) Yes (default)
+n) No
+y/n&gt; 
+--------------------
+[erimic]
+type = onedrive
+token = {&quot;access_token&quot;:&quot;XXXXXX&quot;}
+drive_id = fdbf61ea68ae21cc
+drive_type = personal
+--------------------
+y) Yes this is OK (default)
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y
+Current remotes:
+
+Name                 Type
+====                 ====
+erimic               onedrive
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q&gt; q
+</code></pre>
+<h4 id="挂载为磁盘"><a href="#挂载为磁盘" class="headerlink" title="挂载为磁盘"></a>挂载为磁盘</h4><pre><code class="shell">mkdir -p /app/onedrive
+rclone mount OneDriveName:OneDriveFolder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 --daemon
+</code></pre>
+<pre><code class="shell">rclone mount erimic:Linode_Temp /app/onedrive --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 --daemon
+</code></pre>
+<p>OneDriveName:之前命名的OneDriveName</p>
+<p>OneDriveFolder:需要挂载的OneDrive下的文件夹</p>
+<p>LocalFolder:本地路径</p>
+<h4 id="卸载硬盘"><a href="#卸载硬盘" class="headerlink" title="卸载硬盘"></a>卸载硬盘</h4><pre><code class="shell">fusermount -qzu LocalFolder
+</code></pre>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Debian/" rel="tag"># Debian</a>
+          
+            <a href="/tags/fsclone/" rel="tag"># fsclone</a>
+          
+            <a href="/tags/onedrive/" rel="tag"># onedrive</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/cloudera-local-repo/" rel="next" title="Cloudera本地源搭建">
+                <i class="fa fa-chevron-left"></i> Cloudera本地源搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Erimic" />
+          <p class="site-author-name" itemprop="name">Erimic</p>
+           
+              <p class="site-description motion-element" itemprop="description">业精于勤荒于嬉 行成于思毁于随</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian-通过rclone挂在OneDrive"><span class="nav-number">1.</span> <span class="nav-text">Debian 通过rclone挂在OneDrive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取windows客户端授权"><span class="nav-number">1.1.</span> <span class="nav-text">获取windows客户端授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载安装rclone"><span class="nav-number">1.2.</span> <span class="nav-text">下载安装rclone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化配置"><span class="nav-number">1.3.</span> <span class="nav-text">初始化配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载为磁盘"><span class="nav-number">1.4.</span> <span class="nav-text">挂载为磁盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载硬盘"><span class="nav-number">1.5.</span> <span class="nav-text">卸载硬盘</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Erimic</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://erimic.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.erimic.com/article/debian-fsclone-onedrive/';
+          this.page.identifier = 'article/debian-fsclone-onedrive/';
+          this.page.title = 'Debian 通过rclone挂在OneDrive';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://erimic.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EMrjmmtbBQpdA4yx0f4bl0nh-gzGzoHsz", "t0L7FDuK6zJdULJpLrNf83QR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

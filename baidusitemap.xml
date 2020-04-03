@@ -4,16 +4,54 @@
 
     
   <url>
-    <loc>http://www.erimic.com/article/EBS12-2-WEBADI/</loc>
-    <lastmod>2017-07-31T03:00:25.461Z</lastmod>
+    <loc>http://www.erimic.com/article/cloudera-install/</loc>
+    <lastmod>2020-04-03T03:41:40.496Z</lastmod>
     <data>
         <display>
-        <title>EBS12.2 WEBADI</title>
-        <pubTime>2017-07-06T08:06:04.000Z</pubTime>
+        <title>Cloudera Hadoop平台搭建笔记</title>
+        <pubTime>2020-03-28T02:29:53.000Z</pubTime>
         
-        <tag>EBS</tag>
+        <tag>Cloudera</tag>
          
-        <tag>WEBADI</tag>
+        <tag>Hadoop</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/cloudera-local-repo/</loc>
+    <lastmod>2020-03-28T16:28:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cloudera本地源搭建</title>
+        <pubTime>2020-03-28T06:21:52.000Z</pubTime>
+        
+        <tag>cloudera</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/debian-fsclone-onedrive/</loc>
+    <lastmod>2020-03-28T10:16:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>Debian 通过rclone挂在OneDrive</title>
+        <pubTime>2020-03-28T07:35:03.000Z</pubTime>
+        
+        <tag>Debian</tag>
+         
+        <tag>fsclone</tag>
+         
+        <tag>onedrive</tag>
          
          
            
@@ -24,7 +62,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/ebs-dowload-ak-region/</loc>
-    <lastmod>2017-06-01T06:07:55.351Z</lastmod>
+    <lastmod>2020-03-28T10:11:01.000Z</lastmod>
     <data>
         <display>
         <title>EBS AK REGION 导入导出</title>
@@ -43,7 +81,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/oaf-jquery-autocompleted/</loc>
-    <lastmod>2017-04-26T14:41:13.630Z</lastmod>
+    <lastmod>2020-03-28T10:10:52.000Z</lastmod>
     <data>
         <display>
         <title>OAF使用Jquery实现文本框autocompleted</title>
@@ -66,7 +104,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/OAF-JDEVELOPER-ERROR/</loc>
-    <lastmod>2017-04-20T02:32:27.927Z</lastmod>
+    <lastmod>2020-03-28T10:10:42.000Z</lastmod>
     <data>
         <display>
         <title>OAF 12.2调试页面报错Cannot create an instance of the Virtual Machine Java</title>
@@ -86,65 +124,18 @@
 
     
   <url>
-    <loc>http://www.erimic.com/article/machine-deep-learning2/</loc>
-    <lastmod>2017-04-01T03:47:09.043Z</lastmod>
+    <loc>http://www.erimic.com/article/oel6-5-for-ebs-r12/</loc>
+    <lastmod>2020-03-28T10:09:54.000Z</lastmod>
     <data>
         <display>
-        <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 2</title>
-        <pubTime>2017-04-01T03:31:32.000Z</pubTime>
+        <title>EBS R12 Linux服务器准备</title>
+        <pubTime>2017-03-15T13:35:05.000Z</pubTime>
         
-        <tag>Deep Learning</tag>
+        <tag>EBS</tag>
          
+        <tag>Linux</tag>
          
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.erimic.com/article/machine-deep-learning1/</loc>
-    <lastmod>2017-04-01T03:46:54.809Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 1</title>
-        <pubTime>2017-04-01T03:31:21.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.erimic.com/article/redmine-plugin-install/</loc>
-    <lastmod>2017-03-29T05:28:02.757Z</lastmod>
-    <data>
-        <display>
-        <title>Redmine安装插件</title>
-        <pubTime>2017-03-29T05:17:02.000Z</pubTime>
-        
-        <tag>Redmine</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.erimic.com/article/hexo-command/</loc>
-    <lastmod>2017-03-29T05:27:41.725Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo常用命令</title>
-        <pubTime>2017-03-29T05:18:55.000Z</pubTime>
-        
-        <tag>hexo</tag>
+        <tag>Oracle ERP</tag>
          
          
            
@@ -155,7 +146,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/11gr2-standalone-server-installation/</loc>
-    <lastmod>2017-03-16T02:43:48.522Z</lastmod>
+    <lastmod>2020-03-28T10:09:47.000Z</lastmod>
     <data>
         <display>
         <title>11gR2 for Standalone Server Installation</title>
@@ -176,7 +167,7 @@
     
   <url>
     <loc>http://www.erimic.com/article/next-more/</loc>
-    <lastmod>2017-03-15T14:07:39.605Z</lastmod>
+    <lastmod>2020-03-28T10:09:37.000Z</lastmod>
     <data>
         <display>
         <title>NexT如何在主页中使用显示更多按钮</title>
@@ -194,18 +185,16 @@
 
     
   <url>
-    <loc>http://www.erimic.com/article/oel6-5-for-ebs-r12/</loc>
-    <lastmod>2017-03-15T14:06:39.126Z</lastmod>
+    <loc>http://www.erimic.com/article/shadownsocks/</loc>
+    <lastmod>2020-03-28T10:09:29.000Z</lastmod>
     <data>
         <display>
-        <title>EBS R12 Linux服务器准备</title>
-        <pubTime>2017-03-15T13:35:05.000Z</pubTime>
+        <title>Debian下Shadowsocks安装及优化</title>
+        <pubTime>2017-03-15T01:57:46.000Z</pubTime>
         
-        <tag>EBS</tag>
-         
         <tag>Linux</tag>
          
-        <tag>Oracle ERP</tag>
+        <tag>VPN</tag>
          
          
            
@@ -215,16 +204,84 @@
 
     
   <url>
-    <loc>http://www.erimic.com/article/shadownsocks/</loc>
-    <lastmod>2017-03-15T13:12:39.976Z</lastmod>
+    <loc>http://www.erimic.com/article/EBS12-2-WEBADI/</loc>
+    <lastmod>2020-03-28T10:09:04.000Z</lastmod>
     <data>
         <display>
-        <title>Debian下Shadowsocks安装及优化</title>
-        <pubTime>2017-03-15T01:57:46.000Z</pubTime>
+        <title>EBS12.2 WEBADI</title>
+        <pubTime>2017-07-06T08:06:04.000Z</pubTime>
         
-        <tag>Linux</tag>
+        <tag>EBS</tag>
          
-        <tag>VPN</tag>
+        <tag>WEBADI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/machine-deep-learning2/</loc>
+    <lastmod>2017-04-01T03:47:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 2</title>
+        <pubTime>2017-04-01T03:31:32.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/machine-deep-learning1/</loc>
+    <lastmod>2017-04-01T03:46:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习(Machine Learning)&深度学习(Deep Learning)资料 1</title>
+        <pubTime>2017-04-01T03:31:21.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/redmine-plugin-install/</loc>
+    <lastmod>2017-03-29T05:28:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>Redmine安装插件</title>
+        <pubTime>2017-03-29T05:17:02.000Z</pubTime>
+        
+        <tag>Redmine</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.erimic.com/article/hexo-command/</loc>
+    <lastmod>2017-03-29T05:27:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo常用命令</title>
+        <pubTime>2017-03-29T05:18:55.000Z</pubTime>
+        
+        <tag>hexo</tag>
          
          
            
